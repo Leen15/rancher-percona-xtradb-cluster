@@ -21,6 +21,9 @@ echo "FLUSH PRIVILEGES;" >> /tmp/init.sql
 touch ${PXC_CONF_FLAG}
 touch ${PXC_BOOTSTRAP_FLAG}
 
+# Start the first init script because without this other nodes cannot join cluster
+ mysql -u root -pPXC_ROOT_PASSWORD < /tmp/init.sql
+
 # Import an init SQL
 if [ "${PXC_INIT_SQL}" != "**ChangeMe**" -a ! -z "${PXC_INIT_SQL}" ]; then
    # Save the SQL temporary
