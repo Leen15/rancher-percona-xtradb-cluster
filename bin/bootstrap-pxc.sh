@@ -14,7 +14,7 @@ echo "ALTER USER root IDENTIFIED BY '${PXC_ROOT_PASSWORD}';" >> /tmp/init.sql
 echo "DELETE FROM mysql.user WHERE User='';" >> /tmp/init.sql
 echo "CREATE USER 'sstuser'@'%' IDENTIFIED BY '${PXC_SST_PASSWORD}';" >> /tmp/init.sql
 echo "GRANT RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO 'sstuser'@'%';" >> /tmp/init.sql
-echo "GRANT PROCESS ON *.* TO 'clustercheckuser'@'localhost' IDENTIFIED BY 'clustercheckpassword!';" >> /tmp/init.sql
+echo "GRANT PROCESS ON *.* TO 'sstuser'@'localhost' IDENTIFIED BY '${PXC_SST_PASSWORD}';" >> /tmp/init.sql
 echo "FLUSH PRIVILEGES;" >> /tmp/init.sql
 touch ${PXC_CONF_FLAG}
 touch ${PXC_BOOTSTRAP_FLAG}
